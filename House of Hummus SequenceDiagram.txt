@@ -1,0 +1,45 @@
+title House of Humus
+
+
+participant user
+participant main.js
+
+participant Entrees.js
+participant Veggies.js
+participant SideDishes.js
+participant Sales.js
+participant Purchase.js
+participant API
+participant DOM
+
+main.js -> Entrees.js: Lets get some Entrees in here
+Entrees.js -> API: fetches entrees from database
+API -> Entrees.js: Returns entrees data
+Entrees.js -> main.js: Entrees coming up!
+
+main.js -> Veggies.js: Hey, can you render Veggies?
+Veggies.js -> API: fetches veggies from api
+API -> Veggies.js: Returns veggies data
+Veggies.js -> main.js: Here ya go, veggies!
+
+main.js -> SideDishes.js: Can I get some sides?
+SideDishes.js -> API: fetches sides from api
+API -> SideDishes.js: Returns sides data
+SideDishes.js -> main.js: Would you like fries with that?
+
+user -> Entrees.js: User wants this
+user -> Veggies.js: and this
+user -> SideDishes.js: andddd a side of fries
+
+user-> Purchase.js: Purchase Combo button clicked
+
+Purchase.js-> API: I was listening for this! It happened!
+
+API -> main.js: Guess what main? newPurchaseCreated event!
+main.js -> Sales.js: Sweet, time to sale!
+
+Sales.js -> API: What got purchased
+API -> Sales.js: All this stuff!
+
+Sales.js -> main.js: Heres a render of what they bought
+main.js -> DOM: Cool, lets display all that
