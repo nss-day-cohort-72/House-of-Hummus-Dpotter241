@@ -1,0 +1,59 @@
+title House of Humus
+
+
+participant user
+participant main.js
+
+participant FoodTruck.js
+
+participant Entrees.js
+participant Vegetables.js
+participant SideDishes.js
+participant Sales.js
+participant Purchase.js
+participant TransientState.js
+
+participant API
+participant DOM
+
+main.js -> FoodTruck.js: Render HTML for the site
+
+FoodTruck.js -> Entrees.js: Fetch EntreesHTML
+Entrees.js -> API: Fetch entrees from database
+API -> Entrees.js: Return Entrees data
+Entrees.js -> FoodTruck.js: Return EntreesHTML
+
+FoodTruck.js -> Vegetables.js: Fetch VeggiesHTML
+Vegetables.js -> API: Fetch Veggies from database
+API -> Vegetables.js: Return Veggies data
+Vegetables.js -> FoodTruck.js: Return VeggiesHTML
+
+FoodTruck.js -> SideDishes.js: Fetch SidesHTML
+SideDishes.js -> API:Fetch Sides from database
+API -> SideDishes.js: Return Sides data
+SideDishes.js -> FoodTruck.js: Return SidesHTML
+
+FoodTruck.js -> Sales.js: Fetch SubmitButtonHTML
+Sales.js -> FoodTruck.js: Return SubmitButtonHTML
+
+FoodTruck.js -> main.js: Return Render
+
+user -> Entrees.js: Select Entrees
+Entrees.js -> TransientState.js: I was listening for that! Store selection
+user -> Vegetables.js: Select Veggies
+Vegetables.js -> TransientState.js: I was listening for that! Store selection
+user -> SideDishes.js: Select Sides
+SideDishes.js -> TransientState.js: I was listening for that! Store selection
+
+user -> Sales.js: Purchase Combo button pressed
+Sales.js -> TransientState.js: I was listening for this, lets post this purchase
+
+TransientState.js -> API: POST purchase
+
+Purchase.js -> API: I was listening for that click event too, can I have the sales?
+API -> Purchase.js: Here was the sale
+Purchase.js -> FoodTruck.js: Return purchase for render
+
+FoodTruck.js -> main.js: SalesHTML of what was purchased
+
+main.js -> DOM: Final Render to DOM
